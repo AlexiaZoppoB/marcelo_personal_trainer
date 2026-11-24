@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marcelo Cardoso Personal</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Figtree:wght@400;500;600&display=swap">
+<style>
+/* Layout: cabeçalho simples, hero com mostrador de cadência (anel de ticks de spinning) em volta da foto,
+   áreas de trabalho em linhas, 4 passos em sequência, 2 planos lado a lado, faixa final de contato. */
+:root {
+  --bg: #EEF0F2;
+  --surface: #FFFFFF;
+  --ink: #101318;
+  --muted: #566070;
+  --line: #D3D8DE;
+  --accent: #2646F0;
+  --on-accent: #FFFFFF;
+  --band: #101318;
+  --band-fg: #EEF0F2;
+  --band-accent: #8FA2FF;
+  --display: "Archivo", "Arial Narrow", Arial, sans-serif;
+  --body: "Figtree", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F1216; --surface: #171B21; --ink: #EEF0F2; --muted: #9AA4B2; --line: #2A313A;
+    --accent: #8FA2FF; --on-accent: #0F1216; --band: #1A2030;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F1216; --surface: #171B21; --ink: #EEF0F2; --muted: #9AA4B2; --line: #2A313A;
+  --accent: #8FA2FF; --on-accent: #0F1216; --band: #1A2030;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  padding-block: 0;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+.wrap {
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+h1, h2, h3 {
+  font-family: var(--display);
+  font-stretch: 78%;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.005em;
+  margin: 0;
+  text-wrap: balance;
+}
+h2 { font-size: clamp(2rem, 5.5vw, 3.4rem); }
+h3 { font-size: 1.6rem; }
+p { margin: 0; }
+
+/* Botões */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 48px; padding: 0 1.4rem;
+  border-radius: 999px;
+  background: var(--accent); color: var(--on-accent);
+  font: 600 1rem/1 var(--body);
+  text-decoration: none;
+  border: 2px solid var(--accent);
+  transition: transform .15s ease, background-color .15s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn.ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
+.btn.small { min-height: 40px; padding: 0 1.1rem; font-size: .95rem; }
+
+/* Cabeçalho */
+.top { padding-block: 18px; }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.brand { font-family: var(--display); font-stretch: 78%; font-weight: 800; font-size: 1.5rem; letter-spacing: .01em; text-decoration: none; }
+
+/* Hero */
+.hero { padding-block: 24px 72px; }
+.hero .wrap { display: grid; gap: 40px; align-items: center; }
+.dial {
+  position: relative;
+  width: min(80vw, 340px);
+  aspect-ratio: 1;
+  margin-inline: auto;
+}
+.dial::before {
+  content: "";
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  background: repeating-conic-gradient(var(--accent) 0 1.1deg, transparent 1.1deg 6deg);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 20px), #000 calc(100% - 20px));
+          mask: radial-gradient(farthest-side, transparent calc(100% - 20px), #000 calc(100% - 20px));
+  animation: pedal 60s linear infinite;
+}
+.dial::after {
+  content: "";
+  position: absolute; inset: 7%;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+}
+.dial .photo {
+  position: absolute; inset: 11%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #3d3b40;
+}
+.dial .photo img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.07); }
+@keyframes pedal { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .dial::before { animation: none; } html { scroll-behavior: auto; } .btn { transition: none; } }
+
+.hero h1 { font-size: clamp(3rem, 11vw, 5.6rem); }
+.hero .lead { margin-top: 20px; max-width: 34em; color: var(--muted); font-size: 1.15rem; }
+.hero .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.creds { display: flex; flex-wrap: wrap; gap: 12px 28px; margin: 36px 0 0; padding: 0; list-style: none; }
+.creds li { border-left: 3px solid var(--accent); padding-left: 12px; font-weight: 500; max-width: 18em; line-height: 1.35; }
+@media (min-width: 860px) {
+  .hero { padding-block: 40px 96px; }
+  .hero .wrap { grid-template-columns: 1.15fr .85fr; gap: 56px; }
+  .hero .dial { order: 2; width: 100%; max-width: 420px; }
+}
+
+/* Seções */
+section { padding-block: 72px; }
+.head { max-width: 30em; margin-bottom: 40px; }
+.head p { margin-top: 14px; color: var(--muted); }
+
+/* Áreas de trabalho: linhas */
+.areas { border-top: 1px solid var(--line); }
+.area { display: grid; gap: 8px; padding-block: 28px; border-bottom: 1px solid var(--line); }
+.area p { color: var(--muted); max-width: 38em; }
+@media (min-width: 760px) { .area { grid-template-columns: 1fr 1.4fr; gap: 40px; align-items: baseline; } }
+
+/* Passos */
+.steps { display: grid; gap: 28px; margin: 0; padding: 0; list-style: none; }
+.steps li { display: grid; gap: 6px; }
+.steps .n { font-family: var(--display); font-stretch: 78%; font-weight: 800; font-size: 3.4rem; line-height: 1; color: var(--accent); font-variant-numeric: tabular-nums; }
+.steps h3 { font-size: 1.35rem; }
+.steps p { color: var(--muted); }
+@media (min-width: 760px) { .steps { grid-template-columns: repeat(4, 1fr); gap: 32px; } }
+
+/* Planos */
+.plans { display: grid; gap: 20px; }
+.plan {
+  display: flex; flex-direction: column; gap: 22px;
+  padding: 32px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+.plan.featured { background: var(--band); color: var(--band-fg); border-color: var(--band); }
+.plan .tag { align-self: flex-start; font-size: .85rem; font-weight: 600; padding: 4px 12px; border-radius: 999px; background: var(--band-accent); color: #0F1216; }
+.plan .price { font-family: var(--display); font-stretch: 78%; font-weight: 800; font-size: 3.6rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.plan .price small { font-family: var(--body); font-stretch: 100%; font-weight: 500; font-size: 1rem; opacity: .7; margin-left: 6px; }
+.plan ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; flex: 1; }
+.plan li { padding-left: 26px; position: relative; }
+.plan li::before { content: ""; position: absolute; left: 2px; top: .5em; width: 12px; height: 7px; border-left: 2.5px solid var(--accent); border-bottom: 2.5px solid var(--accent); transform: rotate(-45deg); }
+.plan.featured li::before { border-color: var(--band-accent); }
+.plan.featured .btn { background: var(--band-accent); border-color: var(--band-accent); color: #0F1216; }
+.plan .desc { opacity: .75; }
+@media (min-width: 760px) { .plans { grid-template-columns: 1fr 1fr; gap: 24px; } }
+
+/* FAQ */
+.faq { border-top: 1px solid var(--line); max-width: 760px; }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { cursor: pointer; padding-block: 20px; font-weight: 600; font-size: 1.1rem; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font-size: 1.5rem; line-height: 1; color: var(--accent); }
+.faq details[open] summary::after { content: "–"; }
+.faq details p { padding-bottom: 20px; color: var(--muted); max-width: 40em; }
+
+/* Faixa final */
+.cta { background: var(--band); color: var(--band-fg); }
+.cta .wrap { display: grid; gap: 24px; }
+.cta h2 { font-size: clamp(2.4rem, 7vw, 4.4rem); }
+.cta p { max-width: 32em; opacity: .8; }
+.cta .btn { background: var(--band-accent); border-color: var(--band-accent); color: #0F1216; justify-self: start; }
+
+footer { padding-block: 28px; color: var(--muted); font-size: .95rem; }
+
+/* Botão flutuante */
+.float {
+  position: fixed;
+  right: calc(16px + env(safe-area-inset-right, 0px));
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  z-index: 20;
+  box-shadow: 0 6px 20px rgba(16, 19, 24, .28);
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio">Marcelo Cardoso</a>
+    <a class="btn small" href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20Marcelo!%20Vim%20pelo%20seu%20site%20e%20quero%20saber%20mais%20sobre%20os%20treinos." target="_blank" rel="noopener">Chamar no WhatsApp</a>
+  </div>
+</header>
+
+<main id="inicio">
+  <div class="hero">
+    <div class="wrap">
+      <div class="dial">
+        <div class="photo">
+          <img src="foto-marcelo.jpg" width="940" height="910" alt="Marcelo Gustavo Cardoso, personal trainer, em frente ao espelho da academia">
+        </div>
+      </div>
+      <div>
+        <h1>Treino com método para ganhar massa e perder gordura.</h1>
+        <p class="lead">Sou Marcelo Gustavo Cardoso, personal trainer e professor de spinning. Monto o treino em volta da sua rotina e acompanho a sua evolução de perto.</p>
+        <div class="actions">
+          <a class="btn" href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20Marcelo!%20Quero%20come%C3%A7ar%20a%20treinar%20com%20voc%C3%AA." target="_blank" rel="noopener">Falar no WhatsApp</a>
+          <a class="btn ghost" href="#planos">Ver os planos</a>
+        </div>
+        <ul class="creds">
+          <li>Pós-graduação em hipertrofia e emagrecimento</li>
+          <li>Professor de spinning</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <section id="treino">
+    <div class="wrap">
+      <div class="head">
+        <h2>O que você treina comigo</h2>
+      </div>
+      <div class="areas">
+        <div class="area">
+          <h3>Hipertrofia</h3>
+          <p>Ganho de massa muscular com carga, volume e descanso planejados. Você sabe o que fazer em cada série e quando aumentar o peso.</p>
+        </div>
+        <div class="area">
+          <h3>Emagrecimento</h3>
+          <p>Treino e rotina para reduzir gordura de forma sustentável, sem extremos. Para o plano alimentar, trabalho junto com o seu nutricionista.</p>
+        </div>
+        <div class="area">
+          <h3>Spinning</h3>
+          <p>Ciclismo indoor para melhorar o condicionamento, com a intensidade ajustada ao seu nível e à sua meta.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="como-funciona">
+    <div class="wrap">
+      <div class="head">
+        <h2>Como funciona</h2>
+      </div>
+      <ol class="steps">
+        <li><span class="n">1</span><h3>Conversa inicial</h3><p>Você me conta o seu objetivo, o seu histórico e quantos dias consegue treinar.</p></li>
+        <li><span class="n">2</span><h3>Avaliação</h3><p>Analiso a sua rotina, o seu nível atual e qualquer limitação.</p></li>
+        <li><span class="n">3</span><h3>Treino sob medida</h3><p>Você recebe a sua ficha com a explicação de cada exercício.</p></li>
+        <li><span class="n">4</span><h3>Acompanhamento</h3><p>Reviso os resultados e ajusto o treino conforme você evolui.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="planos">
+    <div class="wrap">
+      <div class="head">
+        <h2>Escolha como quer treinar</h2>
+        <p>Dois planos, sem fidelidade. Se tiver dúvida sobre qual serve melhor, me chame.</p>
+      </div>
+      <div class="plans">
+        <article class="plan">
+          <div>
+            <h3>Treino online</h3>
+            <p class="desc" style="margin-top:8px">Para quem já treina e quer um plano organizado.</p>
+          </div>
+          <div class="price">R$ 149<small>por mês</small></div>
+          <ul>
+            <li>Ficha de treino personalizada</li>
+            <li>Vídeos de execução dos exercícios</li>
+            <li>Ajuste do treino a cada mês</li>
+            <li>Suporte pelo WhatsApp em dias úteis</li>
+          </ul>
+          <a class="btn ghost" href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20Marcelo!%20Quero%20o%20plano%20Treino%20online." target="_blank" rel="noopener">Quero este plano</a>
+        </article>
+        <article class="plan featured">
+          <span class="tag">Recomendado</span>
+          <div>
+            <h3>Acompanhamento completo</h3>
+            <p class="desc" style="margin-top:8px">Para quem quer resultado com o treinador por perto.</p>
+          </div>
+          <div class="price">R$ 299<small>por mês</small></div>
+          <ul>
+            <li>Tudo do plano Treino online</li>
+            <li>Ajustes semanais na ficha</li>
+            <li>Avaliação mensal de evolução</li>
+            <li>Orientação de spinning e cardio</li>
+            <li>Contato direto pelo WhatsApp</li>
+          </ul>
+          <a class="btn" href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20Marcelo!%20Quero%20o%20plano%20Acompanhamento%20completo." target="_blank" rel="noopener">Quero este plano</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="duvidas">
+    <div class="wrap">
+      <div class="head">
+        <h2>Perguntas frequentes</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>Sou iniciante. Posso começar?</summary>
+          <p>Pode. O primeiro passo é uma conversa para entender o seu nível, e o treino começa leve e evolui com você.</p>
+        </details>
+        <details>
+          <summary>Preciso de academia?</summary>
+          <p>Depende do objetivo e do plano. Conte o que você tem à disposição e eu monto o treino com isso.</p>
+        </details>
+        <details>
+          <summary>Como faço para começar?</summary>
+          <p>Toque em qualquer botão de WhatsApp desta página, conte o seu objetivo e eu respondo com os próximos passos.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <h2>Vamos montar o seu treino?</h2>
+      <p>Mande uma mensagem com o seu objetivo. Eu respondo pelo WhatsApp.</p>
+      <a class="btn" href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20Marcelo!%20Quero%20montar%20o%20meu%20treino." target="_blank" rel="noopener">Falar no WhatsApp</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Marcelo Gustavo Cardoso, Personal Trainer</div>
+</footer>
+
+<a class="btn float" href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20Marcelo!%20Vim%20pelo%20seu%20site." target="_blank" rel="noopener" aria-label="Chamar no WhatsApp">WhatsApp</a>
+
+</body>
+</html>
